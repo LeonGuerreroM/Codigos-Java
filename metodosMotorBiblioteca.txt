@@ -1,0 +1,206 @@
+void consultarUsuarios(){
+      int tamaño, i;
+      tamaño=usuariosBiblioteca.size();
+      for(i=0;i<tamaño;i++){
+          System.out.println(usuariosBiblioteca.elementAt(i).getIdUsuario()+"  "+usuariosBiblioteca.elementAt(i).getNombre());
+      }
+}
+
+boolean consultarUsuarios(JTextArea Area){
+      Dialogo.showOpenDialog(this);
+        documento=Dialogo.getSelectedFile();
+        int character;
+        if(documento!=null){
+              try{
+                  in = new FileReader(documento.getPath());
+                  while((character=in.read())!=-1){
+                      Area.append(String.valueOf((char)character));
+                  }
+                  in.close();
+                  return true;
+              }
+              catch(IOException ex){
+                  
+              }
+          }
+          return false;
+    }
+
+
+void altaUsuarios(){
+        String nombre, direccion;
+        int indice,edad;
+        indice=usuariosBiblioteca.size();
+        System.out.println("Nombre: ");
+        nombre=leer.nextLine();
+        System.out.println("Direccion: ");
+        direccion=leer.nextLine();
+        System.out.println("Edad: ");
+        edad=leerInt.nextInt();
+        Usuario obj = new Usuario(nombre,edad,direccion,indice);
+        usuariosBiblioteca.add(obj);
+    }
+
+
+void BanUsuario(){
+        int indice;
+        
+        consultarUsuarios();
+        
+        System.out.println("Teclee el id del cliente a dar de baja");
+        indice=leerInt.nextInt();
+        usuariosBiblioteca.removeElementAt(indice);
+    }
+
+
+
+void modificarUsuario(){
+        String nombre, direccion;
+        int indice,edad,ca;
+        
+        consultarUsuarios();
+        
+        System.out.println("Ingrese el id del usuario al que le desea cambiar datos");
+        indice=leerInt.nextInt();
+        System.out.println("Para las proximas preguntas, conteste 1 para Si y 2 para No");
+        System.out.println("Desea cambiar el nombre del usuario");
+        ca=leerInt.nextInt();
+        if(ca==1){
+            System.out.println("Teclee el nuevo nombre");
+            nombre=leer.nextLine();
+            usuariosBiblioteca.elementAt(indice).setNombre(nombre);
+        }
+
+        System.out.println("Desea cambiar la edad del usuario");
+        ca=leerInt.nextInt();
+        if(ca==1){
+            System.out.println("Teclee la nueva edad");
+            edad=leerInt.nextInt();
+            usuariosBiblioteca.elementAt(indice).setEdad(edad);
+        }
+
+        System.out.println("Desea cambiar la direccion del usuario");
+        ca=leerInt.nextInt();
+        if(ca==1){
+            System.out.println("Teclee la nueva direccion");
+            direccion=leer.nextLine();
+            usuariosBiblioteca.elementAt(indice).setDireccion(direccion);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void consultarLibros(){
+      int tamaño, i;
+      tamaño=librosBiblioteca.size();
+      for(i=0;i<tamaño;i++){
+          System.out.println(librosBiblioteca.elementAt(i).getIdLibro()+"  "+librosBiblioteca.elementAt(i).getTitulo());
+      }
+    }
+
+
+
+void altaLibros(){
+        String titulo, editorial;
+        int indice,ejemplar;
+        indice=librosBiblioteca.size();
+        System.out.println("Titulo: ");
+        titulo=leer.nextLine();
+        System.out.println("Editorial: ");
+        editorial=leer.nextLine();
+        System.out.println("Numero de Ejemplar: ");
+        ejemplar=leerInt.nextInt();
+        Libro obj = new Libro(titulo,editorial,ejemplar,indice);
+        librosBiblioteca.add(obj);
+    }
+
+
+void BanLibro(){
+        int indice;
+        
+        consultarLibros();
+        
+        System.out.println("Teclee el id del libro a dar de baja");
+        indice=leerInt.nextInt();
+        librosBiblioteca.removeElementAt(indice);
+    }
+    
+
+
+    void modificarLibro(){
+        String titulo, editorial;
+        int indice,ejemplar,ca;
+        
+        consultarLibros();
+        
+        System.out.println("Ingrese el id del libro al que le desea cambiar datos");
+        indice=leerInt.nextInt();
+        System.out.println("Para las proximas preguntas, conteste 1 para Si y 2 para No");
+        System.out.println("Desea cambiar el titulo del libro");
+        ca=leerInt.nextInt();
+        if(ca==1){
+            System.out.println("Teclee el nuevo titulo");
+            titulo=leer.nextLine();
+            librosBiblioteca.elementAt(indice).setTitulo(titulo);
+        }
+
+        System.out.println("Desea cambiar el numero de ejemplar del libro");
+        ca=leerInt.nextInt();
+        if(ca==1){
+            System.out.println("Teclee el nuevo numero");
+            ejemplar=leerInt.nextInt();
+            librosBiblioteca.elementAt(indice).setEjemplar(ejemplar);
+        }
+
+        System.out.println("Desea cambiar la editorial del libro");
+        ca=leerInt.nextInt();
+        if(ca==1){
+            System.out.println("Teclee la nueva editorial");
+            editorial=leer.nextLine();
+            librosBiblioteca.elementAt(indice).setEditorial(editorial);
+        }
+    }
+
+
+
+
+
+
+
+
+void consultarPrestamos(){
+      int tamaño, i;
+      tamaño=prestamosB.size();
+      for(i=0;i<tamaño;i++){
+          System.out.println(prestamosB.elementAt(i).getIdPrestamo()+"  "+prestamosB.elementAt(i).getLibroP()+"  "+prestamosB.elementAt(i).getUsuarioP());
+      }
+    }
+    
+    void altaPrestamos(){
+        String libro, user,fp,fd;
+        int indice,ejemplar;
+        indice=prestamosB.size();
+        System.out.println("Titulo del libro a prestar: ");
+        libro=leer.nextLine();
+        System.out.println("Nombre del Usuario: ");
+        user=leer.nextLine();
+        System.out.println("Numero de Ejemplar: ");
+        ejemplar=leerInt.nextInt();
+        System.out.println("Fecha de prestamo: ");
+        fp=leer.nextLine();
+        System.out.println("Fecha de devolucion: ");
+        fd=leer.nextLine();
+        Prestamo obj = new Prestamo(libro,ejemplar,user,fp,fd,indice);
+        prestamosB.add(obj);
+    }
